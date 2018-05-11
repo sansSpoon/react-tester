@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Signin from './signin';
+import Welcome from './Welcome';
 
 class App extends Component {
+	
+	static displayName = "foo"
+	
   render() {
     return (
       <div className="App">
@@ -14,7 +17,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Signin />
+        <Welcome />
       </div>
     );
   }
