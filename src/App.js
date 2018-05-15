@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Welcome from './Welcome';
+import WelcomeContainer from './WelcomeContainer';
+import HomeContainer from './HomeContainer';
+
+// create context for the currently logged in user
+// will be populated by Welcome
+const AuthContext = React.createContext();
 
 class App extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.state = {
+			authUser: '',
+		};
+	}
 	
 	static displayName = "foo"
 	
