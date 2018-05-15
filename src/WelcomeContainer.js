@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Welcome from './Welcome';
 
 export default class WelcomeContainer extends Component {
 
@@ -11,7 +12,10 @@ export default class WelcomeContainer extends Component {
 
 	render() {
 		return (
-			<h1>Welcome</h1>
+			<div>
+				<p>Welcome</p>
+				<Welcome />
+			</div>
 		);
 	}
 

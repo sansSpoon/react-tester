@@ -39,17 +39,14 @@ class Welcome extends Component {
 
 	render() {
 		return(
-			<div>
-				<p>Welcome</p>
 				<form>
 					<label htmlFor="email">Email</label>
-					<input id="email" name="email" type="text" value={this.state.email} onChange={this.handleChange} />
+					<input id="email" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
 					<label htmlFor="password">Password</label>
 					<input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
 					<input type="submit" name="signIn" value="Sign In" onClick={this.handleSubmit} />
 					<input type="button" name="signUp" value="Sign Up" onClick={this.handleSubmit} />
 				</form>
-			</div>
 		);
 	}
 	
