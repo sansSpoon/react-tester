@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class HomeContainer extends Component {
+export default class HomeContainer extends Component {
 
 	constructor(props) {
 		super(props);
@@ -11,7 +11,7 @@ class HomeContainer extends Component {
 
 	render() {
 		return (
-			<h1>There is nothing like 127.0.0.1</H1>
+			<h1>There is nothing like 127.0.0.1</h1>
 		);
 	}
 
