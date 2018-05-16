@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AuthContext } from './AuthContext';
 import { logResponse, json, status } from './fetchMethods';
 
 //import SignUp from './SignUp';
@@ -67,13 +66,15 @@ class Welcome extends Component {
 			.then(logResponse).then(status).then(json)
 			.then(data => {
 				console.log(data);
-				this.props.onLogin(true);
+				this.props.onLogin({
+					authenticated: true,
+					authUser: payload.email,
+					token: data.token,
+				});
 				
 			}).catch(error => {
 				console.log('There has been a problem with the fetch operation: ', error.message);
 			});
-		
-		
 	}
 
 	render() {

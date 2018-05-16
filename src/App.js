@@ -20,7 +20,9 @@ class App extends Component {
 	
 	handleAuth(auth) {
 		this.setState({
-			authenticated: auth,
+			authenticated: auth.authenticated,
+			authUser: auth.authUser,
+			token: auth.token,
 		});
 	}
 	
