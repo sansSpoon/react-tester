@@ -6,7 +6,7 @@ import HomeContainer from './HomeContainer';
 
 class App extends Component {
 
-	static displayName = "foo"
+	//static displayName = "foo"
 
 	constructor(props) {
 		super(props);
