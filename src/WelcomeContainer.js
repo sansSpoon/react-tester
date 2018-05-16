@@ -14,7 +14,7 @@ export default class WelcomeContainer extends Component {
 		return (
 			<div>
 				<p>Welcome</p>
-				<Welcome />
+				<Welcome onLogin={this.props.onLogin} />
 			</div>
 		);
 	}

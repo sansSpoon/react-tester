@@ -67,6 +67,8 @@ class Welcome extends Component {
 			.then(logResponse).then(status).then(json)
 			.then(data => {
 				console.log(data);
+				this.props.onLogin(true);
+				
 			}).catch(error => {
 				console.log('There has been a problem with the fetch operation: ', error.message);
 			});

@@ -5,7 +5,9 @@ import WelcomeContainer from './WelcomeContainer';
 import HomeContainer from './HomeContainer';
 
 class App extends Component {
-	
+
+	static displayName = "foo"
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,9 +15,14 @@ class App extends Component {
 			authUser: '',
 			token: '',
 		};
+		this.handleAuth = this.handleAuth.bind(this);
 	}
 	
-	static displayName = "foo"
+	handleAuth(auth) {
+		this.setState({
+			authenticated: auth,
+		});
+	}
 	
 	render() {
 		if (this.state.authenticated) {
@@ -25,7 +32,7 @@ class App extends Component {
 				</AuthContext.Provider>
 			);
 		} else {
-			return <WelcomeContainer />;
+			return <WelcomeContainer onLogin={this.handleAuth} />;
 		}
 	}
 }
