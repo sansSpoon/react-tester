@@ -1,6 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Welcome from './Welcome';
 
+
+export default function WelcomeContainer(props) {
+	return (
+		<div>
+			<p>Welcome</p>
+			<Welcome onLogin={props.onLogin} />
+		</div>
+	);
+}
+
+
+
+
+
+// Originally created the container as a class,
+// but no state was being used, need to look at
+// seperating out welcome method and put in here
+
+/*
 export default class WelcomeContainer extends Component {
 
 	constructor(props) {
@@ -20,3 +39,4 @@ export default class WelcomeContainer extends Component {
 	}
 
 }
+*/
