@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { AuthContext } from './AuthContext';
 import { logResponse, json, status } from './fetchMethods';
 
 //import SignUp from './SignUp';
