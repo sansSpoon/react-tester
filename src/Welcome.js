@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { logResponse, json, status } from './fetchMethods';
+import { inspectResponse } from './fetchMethods';
 
 //import SignUp from './SignUp';
 //import SignIn from './SignIn';
@@ -12,6 +12,8 @@ class Welcome extends Component {
 		this.state = {
 			email: '',
 			password: '',
+			status: '',
+			message: '',
 		}
 		
 		this.handleChange = this.handleChange.bind(this);
@@ -63,30 +65,44 @@ class Welcome extends Component {
 		}
 		
 		authFetch
-			.then(logResponse).then(status).then(json)
-			.then(data => {
+			.then(inspectResponse)
+			.then(({status, data}) => {
+				console.log(status);
 				console.log(data);
-				this.props.onLogin({
-					authenticated: true,
-					authUser: payload.email,
-					token: data.token,
-				});
-				
-			}).catch(error => {
+				if (status === 401) {
+					this.setState({
+						status: 401,
+						message: data
+					});
+				} else {
+					this.props.onLogin({
+						authenticated: true,
+						authUser: payload.email,
+						token: data.token,
+					});
+				}
+			})
+			.catch(error => {
 				console.log('There has been a problem with the fetch operation: ', error.message);
 			});
 	}
 
 	render() {
 		return(
-			<form>
-				<label htmlFor="email">Email</label>
-				<input id="email" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
-				<label htmlFor="password">Password</label>
-				<input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-				<input type="submit" name="signIn" value="Sign In" onClick={this.handleSubmit} />
-				<input type="button" name="signUp" value="Sign Up" onClick={this.handleSubmit} />
-			</form>
+			<React.Fragment>
+				{(this.state.status === 401) &&
+					<p>{this.state.message.message}</p>
+				}
+				
+				<form>
+					<label htmlFor="email">Email</label>
+					<input id="email" name="email" type="email" value={this.state.email} onChange={this.handleChange} />
+					<label htmlFor="password">Password</label>
+					<input id="password" name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+					<input type="submit" name="signIn" value="Sign In" onClick={this.handleSubmit} />
+					<input type="button" name="signUp" value="Sign Up" onClick={this.handleSubmit} />
+				</form>
+			</React.Fragment>
 		);
 	}
 	
