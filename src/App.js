@@ -26,6 +26,47 @@ class App extends Component {
 		});
 	}
 	
+	handleSetLocalStorage() {
+		for (let key in this.state) {
+			localStorage.setItem(key, JSON.stringify(this.state[key]));
+		}
+	}
+	
+	handleGetLocalStorage() {
+		for (let key in this.state) {
+			if (localStorage.hasOwnProperty(key)) {
+				let value = localStorage.getItem(key);
+				try {
+					value = JSON.parse(value);
+					this.setState({ [key]: value });
+				} catch (e) {
+					// handle empty string
+					this.setState({ [key]: value });
+				}
+			}
+		}
+	}
+	
+	componentDidMount() {
+		this.handleGetLocalStorage();
+		
+		// add event listener to save state to localStorage
+		// when user leaves/refreshes the page
+		window.addEventListener(
+			"beforeunload",
+			this.handleSetLocalStorage.bind(this)
+		);
+	}
+	
+	componentWillUnmount() {
+		window.removeEventListener(
+			"beforeunload",
+			this.handleSetLocalStorage.bind(this)
+		);
+		
+		this.handleGetLocalStorage();
+	}
+	
 	render() {
 		if (this.state.authenticated) {
 			return (
